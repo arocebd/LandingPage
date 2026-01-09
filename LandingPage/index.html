@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern POS System for Your Business - Manage sales, inventory, customers, and more with our powerful cloud-based POS solution">
+    <meta name="keywords" content="POS System, Point of Sale, Inventory Management, Sales Management, Bangladesh POS">
+    <title>Khotiyan-খতিয়ান - Modern Point of Sale System</title>
+    
+    <!-- Favicon Placeholder -->
+    <!-- <link rel="icon" type="image/png" href="assets/images/favicon.png"> -->
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <!-- Logo Placeholder - Replace with your actual logo -->
+                <div class="logo">
+                    <!-- <img src="assets/images/logo.png" alt="AlzabeerWeb POS Logo"> -->
+                    <div class="logo-text">
+                        <span class="logo-icon"></span>
+                        <span class="logo-name">Khotiyan-খতিয়ান <span class="pos-text">POS</span></span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="nav-menu" id="navMenu">
+                    <a href="#home" class="nav-link active" data-en="Home" data-bn="হোম">Home</a>
+                    <a href="#features" class="nav-link" data-en="Features" data-bn="ফিচার">Features</a>
+                    <a href="#pricing" class="nav-link" data-en="Pricing" data-bn="মূল্য">Pricing</a>
+                    <a href="#tutorial" class="nav-link" data-en="Tutorial" data-bn="টিউটোরিয়াল">Tutorial</a>
+                    <a href="#contact" class="nav-link" data-en="Contact" data-bn="যোগাযোগ">Contact</a>
+                </div>
+                
+                <!-- Right Side -->
+                <div class="nav-right">
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <button class="lang-btn active" data-lang="en">English</button>
+                        <button class="lang-btn" data-lang="bn">বাংলা</button>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    <a href="http://localhost:5173/registration" class="btn btn-primary btn-register" data-en="Register Now" data-bn="এখনই নিবন্ধন করুন">Register Now</a>
+                    
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="hero-shape shape-1"></div>
+            <div class="hero-shape shape-2"></div>
+            <div class="hero-shape shape-3"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title animate-fade-in" data-en="Modern POS System for Your Business" data-bn="আপনার ব্যবসার জন্য আধুনিক পস সিস্টেম">
+                        Modern POS System for Your Business
+                    </h1>
+                    <p class="hero-subtitle animate-fade-in-delay-1" data-en="Manage sales, inventory, customers, and finances with our powerful cloud-based POS solution. Start your free trial today!" data-bn="আমাদের শক্তিশালী ক্লাউড-ভিত্তিক পস সমাধান দিয়ে বিক্রয়, ইনভেন্টরি, গ্রাহক এবং অর্থ পরিচালনা করুন। আজই আপনার বিনামূল্যে ট্রায়াল শুরু করুন!">
+                        Manage sales, inventory, customers, and finances with our powerful cloud-based POS solution. Start your free trial today!
+                    </p>
+                    
+                    <div class="hero-buttons animate-fade-in-delay-2">
+                        <a href="http://localhost:5173/registration" class="btn btn-primary btn-large" data-en="Start Free Trial" data-bn="বিনামূল্যে ট্রায়াল শুরু করুন">
+                            Start Free Trial
+                        </a>
+                        <a href="#features" class="btn btn-outline btn-large" data-en="Learn More" data-bn="আরও জানুন">
+                            Learn More
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats animate-fade-in-delay-3">
+                        <div class="stat-item">
+                            <div class="stat-number" data-en="7 Days" data-bn="৭ দিন">7 Days</div>
+                            <div class="stat-label" data-en="Free Trial" data-bn="বিনামূল্যে ট্রায়াল">Free Trial</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-en="24/7" data-bn="২৪/৭">24/7</div>
+                            <div class="stat-label" data-en="Support" data-bn="সহায়তা">Support</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-en="100%" data-bn="১০০%">100%</div>
+                            <div class="stat-label" data-en="Cloud-Based" data-bn="ক্লাউড-ভিত্তিক">Cloud-Based</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image animate-slide-in">
+                    <!-- Real Dashboard Screenshot -->
+                    <div class="dashboard-screenshot">
+                        <div class="screenshot-wrapper">
+                            <img src="assets/images/dashboard.png" alt="AlzabeerWeb POS Dashboard" class="dashboard-img">
+                            <div class="screenshot-glow"></div>
+                        </div>
+                        <!-- Floating Stats Badges -->
+                        <div class="floating-badge badge-1" data-aos="fade-up" data-aos-delay="200">
+                            <span class="badge-icon">📊</span>
+                            <span class="badge-text">Real-time Analytics</span>
+                        </div>
+                        <div class="floating-badge badge-2" data-aos="fade-up" data-aos-delay="400">
+                            <span class="badge-icon">💰</span>
+                            <span class="badge-text">Sales Tracking</span>
+                        </div>
+                        <div class="floating-badge badge-3" data-aos="fade-up" data-aos-delay="600">
+                            <span class="badge-icon">📦</span>
+                            <span class="badge-text">Inventory Control</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Powerful Features for Your Business" data-bn="আপনার ব্যবসার জন্য শক্তিশালী ফিচার">
+                    Powerful Features for Your Business
+                </h2>
+                <p class="section-subtitle" data-en="Everything you need to run your business efficiently" data-bn="আপনার ব্যবসা দক্ষভাবে চালানোর জন্য আপনার প্রয়োজনীয় সবকিছু">
+                    Everything you need to run your business efficiently
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title" data-en="POS & Sales Management" data-bn="পস এবং বিক্রয় ব্যবস্থাপনা">POS & Sales Management</h3>
+                    <p class="feature-description" data-en="Fast and intuitive point of sale interface with barcode scanning, invoice printing, and payment tracking" data-bn="বারকোড স্ক্যানিং, ইনভয়েস প্রিন্টিং এবং পেমেন্ট ট্র্যাকিং সহ দ্রুত এবং স্বজ্ঞাত পয়েন্ট অফ সেল ইন্টারফেস">
+                        Fast and intuitive point of sale interface with barcode scanning, invoice printing, and payment tracking
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title" data-en="Inventory Management" data-bn="ইনভেন্টরি ব্যবস্থাপনা">Inventory Management</h3>
+                    <p class="feature-description" data-en="Track stock levels, manage products, variants, categories, and get low stock alerts automatically" data-bn="স্টক স্তর ট্র্যাক করুন, পণ্য, ভেরিয়েন্ট, ক্যাটাগরি পরিচালনা করুন এবং স্বয়ংক্রিয়ভাবে কম স্টক সতর্কতা পান">
+                        Track stock levels, manage products, variants, categories, and get low stock alerts automatically
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title" data-en="Customer Management" data-bn="গ্রাহক ব্যবস্থাপনা">Customer Management</h3>
+                    <p class="feature-description" data-en="Manage customer profiles, loyalty points, due payments, and customer ledgers efficiently" data-bn="গ্রাহক প্রোফাইল, লয়ালটি পয়েন্ট, বকেয়া পেমেন্ট এবং গ্রাহক লেজার দক্ষতার সাথে পরিচালনা করুন">
+                        Manage customer profiles, loyalty points, due payments, and customer ledgers efficiently
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title" data-en="Purchase & Supplier Management" data-bn="ক্রয় এবং সরবরাহকারী ব্যবস্থাপনা">Purchase & Supplier Management</h3>
+                    <p class="feature-description" data-en="Manage purchases, suppliers, supplier payments, and maintain supplier ledgers" data-bn="ক্রয়, সরবরাহকারী, সরবরাহকারী পেমেন্ট পরিচালনা করুন এবং সরবরাহকারী লেজার বজায় রাখুন">
+                        Manage purchases, suppliers, supplier payments, and maintain supplier ledgers
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title" data-en="Reports & Analytics" data-bn="রিপোর্ট এবং বিশ্লেষণ">Reports & Analytics</h3>
+                    <p class="feature-description" data-en="Comprehensive sales reports, profit analysis, business overview, and export to PDF/Excel" data-bn="ব্যাপক বিক্রয় রিপোর্ট, লাভ বিশ্লেষণ, ব্যবসা ওভারভিউ এবং পিডিএফ/এক্সেল এ রপ্তানি">
+                        Comprehensive sales reports, profit analysis, business overview, and export to PDF/Excel
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title" data-en="Expense Management" data-bn="ব্যয় ব্যবস্থাপনা">Expense Management</h3>
+                    <p class="feature-description" data-en="Track all business expenses, categorize them, and get expense summaries" data-bn="সমস্ত ব্যবসায়িক ব্যয় ট্র্যাক করুন, সেগুলি শ্রেণীবদ্ধ করুন এবং ব্যয় সারাংশ পান">
+                        Track all business expenses, categorize them, and get expense summaries
+                    </p>
+                </div>
+                
+                <!-- Feature 7 -->
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title" data-en="Multi-User Management" data-bn="মাল্টি-ইউজার ব্যবস্থাপনা">Multi-User Management</h3>
+                    <p class="feature-description" data-en="Add multiple users with custom permissions for different roles" data-bn="বিভিন্ন ভূমিকার জন্য কাস্টম অনুমতি সহ একাধিক ব্যবহারকারী যোগ করুন">
+                        Add multiple users with custom permissions for different roles
+                    </p>
+                </div>
+                
+                <!-- Feature 8 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title" data-en="Cash Transaction Ledger" data-bn="নগদ লেনদেন লেজার">Cash Transaction Ledger</h3>
+                    <p class="feature-description" data-en="Track all cash inflows and outflows with detailed cash ledger and summaries" data-bn="বিস্তারিত নগদ লেজার এবং সারাংশ সহ সমস্ত নগদ প্রবাহ এবং বহিঃপ্রবাহ ট্র্যাক করুন">
+                        Track all cash inflows and outflows with detailed cash ledger and summaries
+                    </p>
+                </div>
+                
+                <!-- Feature 9 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title" data-en="Barcode Generation" data-bn="বারকোড জেনারেশন">Barcode Generation</h3>
+                    <p class="feature-description" data-en="Generate and print barcodes for your products automatically" data-bn="আপনার পণ্যের জন্য স্বয়ংক্রিয়ভাবে বারকোড তৈরি এবং প্রিন্ট করুন">
+                        Generate and print barcodes for your products automatically
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Simple & Transparent Pricing" data-bn="সহজ এবং স্বচ্ছ মূল্য">
+                    Simple & Transparent Pricing
+                </h2>
+                <p class="section-subtitle" data-en="Choose the plan that fits your business needs" data-bn="আপনার ব্যবসার চাহিদা অনুযায়ী পরিকল্পনা চয়ন করুন">
+                    Choose the plan that fits your business needs
+                </p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Free Trial Plan -->
+                <div class="pricing-card" data-aos="fade-up">
+                    <div class="pricing-badge" data-en="Try First" data-bn="প্রথমে চেষ্টা করুন">Try First</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title" data-en="Free Trial" data-bn="বিনামূল্যে ট্রায়াল">Free Trial</h3>
+                        <div class="pricing-price">
+                            <span class="currency" data-en="FREE" data-bn="বিনামূল্যে">FREE</span>
+                        </div>
+                        <p class="pricing-duration" data-en="7 Days Full Access" data-bn="৭ দিন সম্পূর্ণ অ্যাক্সেস">7 Days Full Access</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li data-en="✓ All Features Included" data-bn="✓ সমস্ত ফিচার অন্তর্ভুক্ত">✓ All Features Included</li>
+                        <li data-en="✓ Unlimited Products" data-bn="✓ সীমাহীন পণ্য">✓ Unlimited Products</li>
+                        <li data-en="✓ Unlimited Sales" data-bn="✓ সীমাহীন বিক্রয়">✓ Unlimited Sales</li>
+                        <li data-en="✓ Customer Management" data-bn="✓ গ্রাহক ব্যবস্থাপনা">✓ Customer Management</li>
+                        <li data-en="✓ Reports & Analytics" data-bn="✓ রিপোর্ট এবং বিশ্লেষণ">✓ Reports & Analytics</li>
+                        <li data-en="✓ No Credit Card Required" data-bn="✓ কোন ক্রেডিট কার্ড প্রয়োজন নেই">✓ No Credit Card Required</li>
+                    </ul>
+                    <a href="http://localhost:5173/registration" class="btn btn-outline btn-block" data-en="Start Free Trial" data-bn="বিনামূল্যে ট্রায়াল শুরু করুন">Start Free Trial</a>
+                </div>
+                
+                <!-- Monthly Plan -->
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-badge" data-en="Most Popular" data-bn="সবচেয়ে জনপ্রিয়">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title" data-en="Monthly Plan" data-bn="মাসিক পরিকল্পনা">Monthly Plan</h3>
+                        <div class="pricing-price">
+                            <span class="currency">৳</span>
+                            <span class="amount">750</span>
+                        </div>
+                        <p class="pricing-duration" data-en="Per Month" data-bn="প্রতি মাসে">Per Month</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li data-en="✓ All Features Included" data-bn="✓ সমস্ত ফিচার অন্তর্ভুক্ত">✓ All Features Included</li>
+                        <li data-en="✓ Unlimited Products" data-bn="✓ সীমাহীন পণ্য">✓ Unlimited Products</li>
+                        <li data-en="✓ Unlimited Sales" data-bn="✓ সীমাহীন বিক্রয়">✓ Unlimited Sales</li>
+                        <li data-en="✓ Multi-User Support" data-bn="✓ মাল্টি-ইউজার সাপোর্ট">✓ Multi-User Support</li>
+                        <li data-en="✓ Priority Support" data-bn="✓ অগ্রাধিকার সমর্থন">✓ Priority Support</li>
+                        <li data-en="✓ Cloud Backup" data-bn="✓ ক্লাউড ব্যাকআপ">✓ Cloud Backup</li>
+                    </ul>
+                    <a href="http://localhost:5173/registration" class="btn btn-primary btn-block" data-en="Get Started" data-bn="শুরু করুন">Get Started</a>
+                </div>
+                
+                <!-- Yearly Plan -->
+                <div class="pricing-card pricing-card-featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-badge pricing-badge-best" data-en="Best Value" data-bn="সেরা মূল্য">Best Value</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title" data-en="Yearly Plan" data-bn="বার্ষিক পরিকল্পনা">Yearly Plan</h3>
+                        <div class="pricing-price">
+                            <span class="currency">৳</span>
+                            <span class="amount">7,990</span>
+                        </div>
+                        <p class="pricing-duration" data-en="Per Year (Save 11%)" data-bn="প্রতি বছর (১১% সাশ্রয়)">Per Year (Save 11%)</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li data-en="✓ All Features Included" data-bn="✓ সমস্ত ফিচার অন্তর্ভুক্ত">✓ All Features Included</li>
+                        <li data-en="✓ Unlimited Everything" data-bn="✓ সবকিছু সীমাহীন">✓ Unlimited Everything</li>
+                        <li data-en="✓ Multi-User Support" data-bn="✓ মাল্টি-ইউজার সাপোর্ট">✓ Multi-User Support</li>
+                        <li data-en="✓ Priority Support 24/7" data-bn="✓ ২৪/৭ অগ্রাধিকার সমর্থন">✓ Priority Support 24/7</li>
+                        <li data-en="✓ Free Updates" data-bn="✓ বিনামূল্যে আপডেট">✓ Free Updates</li>
+                        <li data-en="✓ Dedicated Account Manager" data-bn="✓ ডেডিকেটেড একাউন্ট ম্যানেজার">✓ Dedicated Account Manager</li>
+                    </ul>
+                    <a href="http://localhost:5173/registration" class="btn btn-primary btn-block" data-en="Get Started" data-bn="শুরু করুন">Get Started</a>
+                </div>
+            </div>
+            
+            <!-- Enterprise CTA -->
+            <div class="enterprise-cta" data-aos="fade-up">
+                <div class="enterprise-content">
+                    <h3 data-en="Need a Multi-Store POS Solution?" data-bn="মাল্টি-স্টোর পস সমাধান প্রয়োজন?">Need a Multi-Store POS Solution?</h3>
+                    <p data-en="Contact us for enterprise plans with multi-location support, advanced features, and custom integrations" data-bn="মাল্টি-লোকেশন সাপোর্ট, উন্নত ফিচার এবং কাস্টম ইন্টিগ্রেশন সহ এন্টারপ্রাইজ পরিকল্পনার জন্য আমাদের সাথে যোগাযোগ করুন">
+                        Contact us for enterprise plans with multi-location support, advanced features, and custom integrations
+                    </p>
+                    <a href="#contact" class="btn btn-primary" data-en="Contact for Enterprise" data-bn="এন্টারপ্রাইজের জন্য যোগাযোগ করুন">Contact for Enterprise</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section class="tutorial" id="tutorial">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Learn How to Use Our POS System" data-bn="কিভাবে আমাদের পস সিস্টেম ব্যবহার করতে হয় তা শিখুন">
+                    Learn How to Use Our POS System
+                </h2>
+                <p class="section-subtitle" data-en="Watch our comprehensive video tutorials" data-bn="আমাদের ব্যাপক ভিডিও টিউটোরিয়াল দেখুন">
+                    Watch our comprehensive video tutorials
+                </p>
+            </div>
+            
+            <div class="tutorial-content" data-aos="fade-up">
+                <!-- Video Placeholder -->
+                <div class="video-wrapper">
+                    <div class="video-placeholder">
+                        <div class="play-button">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                                <circle cx="40" cy="40" r="40" fill="rgba(255,255,255,0.9)"/>
+                                <path d="M32 25L55 40L32 55V25Z" fill="#FF6B35"/>
+                            </svg>
+                        </div>
+                        <p class="video-text" data-en="Tutorial Video Coming Soon" data-bn="টিউটোরিয়াল ভিডিও শীঘ্রই আসছে">Tutorial Video Coming Soon</p>
+                        <!-- Replace this div with actual YouTube embed when ready -->
+                        <!-- <iframe width="100%" height="500" src="YOUR_YOUTUBE_VIDEO_LINK" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                    </div>
+                </div>
+                
+                <!-- Tutorial Topics -->
+                <div class="tutorial-topics">
+                    <h3 data-en="What You'll Learn:" data-bn="আপনি কি শিখবেন:">What You'll Learn:</h3>
+                    <div class="topics-grid">
+                        <div class="topic-item">
+                            <span class="topic-icon">📦</span>
+                            <span data-en="Product Management" data-bn="পণ্য ব্যবস্থাপনা">Product Management</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-icon">🛒</span>
+                            <span data-en="Making Sales" data-bn="বিক্রয় করা">Making Sales</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-icon">👥</span>
+                            <span data-en="Customer Management" data-bn="গ্রাহক ব্যবস্থাপনা">Customer Management</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-icon">📊</span>
+                            <span data-en="Reports & Analytics" data-bn="রিপোর্ট এবং বিশ্লেষণ">Reports & Analytics</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-icon">⚙️</span>
+                            <span data-en="Settings & Configuration" data-bn="সেটিংস এবং কনফিগারেশন">Settings & Configuration</span>
+                        </div>
+                        <div class="topic-item">
+                            <span class="topic-icon">💡</span>
+                            <span data-en="Tips & Best Practices" data-bn="টিপস এবং সেরা অনুশীলন">Tips & Best Practices</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Get in Touch" data-bn="যোগাযোগ করুন">
+                    Get in Touch
+                </h2>
+                <p class="section-subtitle" data-en="Have questions? We're here to help!" data-bn="প্রশ্ন আছে? আমরা সাহায্য করতে এখানে আছি!">
+                    Have questions? We're here to help!
+                </p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4 data-en="Phone" data-bn="ফোন">Phone</h4>
+                            <p>+880 1791-927084</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4 data-en="Email" data-bn="ইমেইল">Email</h4>
+                            <p>support@alzabeerweb.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4 data-en="Location" data-bn="অবস্থান">Location</h4>
+                            <p data-en="Dhaka, Bangladesh" data-bn="ঢাকা, বাংলাদেশ">Dhaka, Bangladesh</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4 data-en="Business Hours" data-bn="ব্যবসার সময়">Business Hours</h4>
+                            <p data-en="24/7 Support Available" data-bn="২৪/৭ সহায়তা উপলব্ধ">24/7 Support Available</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper" data-aos="fade-left">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" required placeholder=" ">
+                            <label for="name" data-en="Your Name" data-bn="আপনার নাম">Your Name</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" required placeholder=" ">
+                            <label for="email" data-en="Your Email" data-bn="আপনার ইমেইল">Your Email</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="tel" id="phone" required placeholder=" ">
+                            <label for="phone" data-en="Your Phone" data-bn="আপনার ফোন">Your Phone</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" rows="4" required placeholder=" "></textarea>
+                            <label for="message" data-en="Your Message" data-bn="আপনার বার্তা">Your Message</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block" data-en="Send Message" data-bn="বার্তা পাঠান">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <!-- Logo Placeholder -->
+                        <div class="logo-text">
+                            <span class="logo-icon">🏪</span>
+                            <span class="logo-name">AlzabeerWeb <span class="pos-text">POS</span></span>
+                        </div>
+                    </div>
+                    <p class="footer-description" data-en="Modern cloud-based POS system for businesses of all sizes. Manage your sales, inventory, and customers with ease." data-bn="সব আকারের ব্যবসার জন্য আধুনিক ক্লাউড-ভিত্তিক পস সিস্টেম। সহজেই আপনার বিক্রয়, ইনভেন্টরি এবং গ্রাহকদের পরিচালনা করুন।">
+                        Modern cloud-based POS system for businesses of all sizes. Manage your sales, inventory, and customers with ease.
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-en="Quick Links" data-bn="দ্রুত লিঙ্ক">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-en="Home" data-bn="হোম">Home</a></li>
+                        <li><a href="#features" data-en="Features" data-bn="ফিচার">Features</a></li>
+                        <li><a href="#pricing" data-en="Pricing" data-bn="মূল্য">Pricing</a></li>
+                        <li><a href="#tutorial" data-en="Tutorial" data-bn="টিউটোরিয়াল">Tutorial</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-en="Support" data-bn="সহায়তা">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#contact" data-en="Contact Us" data-bn="যোগাযোগ করুন">Contact Us</a></li>
+                        <li><a href="http://localhost:5173/login" data-en="Login" data-bn="লগইন">Login</a></li>
+                        <li><a href="http://localhost:5173/registration" data-en="Register" data-bn="নিবন্ধন">Register</a></li>
+                        <li><a href="#" data-en="FAQ" data-bn="প্রশ্নোত্তর">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-en="Connect With Us" data-bn="আমাদের সাথে যুক্ত হন">Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> AlzabeerWeb POS. <span data-en="All rights reserved." data-bn="সর্বস্বত্ব সংরক্ষিত।">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <!-- Scripts -->
+    <script src="assets/js/script.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
