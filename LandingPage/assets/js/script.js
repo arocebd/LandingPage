@@ -627,5 +627,5 @@ if ('serviceWorker' in navigator) {
     */
 }
 
-console.log('%c🏪 AlzabeerWeb POS Landing Page', 'color: #FF6B35; font-size: 20px; font-weight: bold;');
+console.log('%cKhotiyan-খতিয়ান Landing Page', 'color: #FF6B35; font-size: 20px; font-weight: bold;');
 console.log('%cLoaded successfully!', 'color: #27AE60; font-size: 14px;');

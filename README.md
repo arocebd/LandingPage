@@ -1,0 +1,1 @@
+Simple POS system using Django REST and HTML/JS.

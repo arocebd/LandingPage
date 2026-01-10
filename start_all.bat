@@ -1,0 +1,9 @@
+@echo off
+echo Starting MariaDB...
+net start MariaDB
+
+echo Starting Django backend...
+start "" cmd /k cd /d "C:\Users\User\Desktop\AlzabeerWeb\pos\backend" && venv\Scripts\activate && python manage.py runserver
+
+echo Starting Vue frontend...
+start "" cmd /k cd /d "C:\Users\User\Desktop\AlzabeerWeb\pos\frontend" && npm run dev
