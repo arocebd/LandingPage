@@ -1,0 +1,27 @@
+{
+  "name": "pos-khotiyan-landing-page",
+  "version": "1.0.0",
+  "description": "Landing page with serverless contact form using Cloudflare Workers and D1",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "db:create": "wrangler d1 create pos-contact-db",
+    "db:init": "wrangler d1 execute pos-contact-db --file=schema.sql",
+    "db:query": "wrangler d1 execute pos-contact-db --command",
+    "db:backup": "wrangler d1 export pos-contact-db --output=backup-$(date +%Y%m%d-%H%M%S).sql"
+  },
+  "keywords": [
+    "pos",
+    "landing-page",
+    "contact-form",
+    "cloudflare-workers",
+    "d1-database",
+    "serverless"
+  ],
+  "author": "AlzabeerWeb",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

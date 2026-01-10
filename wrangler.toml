@@ -1,0 +1,21 @@
+name = "pos-khotiyan-contact-api"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "pos-khotiyan-message-db"
+database_id = "posmsgdb" # Will be generated when you create the database
+
+# Environment variables (optional)
+[vars]
+# Add any environment variables here
+
+# Production environment (optional)
+[env.production]
+# Production-specific settings
+
+# Development settings
+[env.development]
+# Development-specific settings

@@ -449,12 +449,8 @@ function initContactForm() {
                 return;
             }
             
-            // Simulate form submission
-            showNotification('Message sent successfully! We will contact you soon.', 'success');
-            contactForm.reset();
-            
-            // TODO: Replace with actual form submission to backend
-            // Example: submitToBackend(name, email, phone, message);
+            // Submit form to Cloudflare Worker
+            submitToBackend(name, email, phone, message, contactForm);
         });
     }
 }
@@ -468,6 +464,49 @@ function isValidPhone(phone) {
     // Bangladesh phone number validation (11 digits, starts with 01)
     const phoneRegex = /^(\+?880|0)?1[3-9]\d{8}$/;
     return phoneRegex.test(phone.replace(/\s/g, ''));
+}
+
+// Submit form data to Cloudflare Worker
+async function submitToBackend(name, email, phone, message, formElement) {
+    // Replace this URL with your actual Cloudflare Worker URL
+    const WORKER_URL = 'https://your-worker-name.your-subdomain.workers.dev/api/contact';
+    
+    // Show loading state
+    const submitBtn = formElement.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    
+    try {
+        const response = await fetch(WORKER_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                phone: phone,
+                message: message
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            showNotification('Message sent successfully! We will contact you soon.', 'success');
+            formElement.reset();
+        } else {
+            showNotification('Failed to send message: ' + (data.error || 'Unknown error'), 'error');
+        }
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        showNotification('Failed to send message. Please try again later.', 'error');
+    } finally {
+        // Restore button state
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+    }
 }
 
 function showNotification(message, type) {
