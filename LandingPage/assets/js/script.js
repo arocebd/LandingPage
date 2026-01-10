@@ -469,7 +469,7 @@ function isValidPhone(phone) {
 // Submit form data to Cloudflare Worker
 async function submitToBackend(name, email, phone, message, formElement) {
     // Replace this URL with your actual Cloudflare Worker URL
-    const WORKER_URL = 'https://your-worker-name.your-subdomain.workers.dev/api/contact';
+    const WORKER_URL = 'https://khotiyan.com'; // 'https://pos-khotiyan-contact-api.your-subdomain.workers.dev/api/contact';
     
     // Show loading state
     const submitBtn = formElement.querySelector('button[type="submit"]');
