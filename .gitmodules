@@ -1,3 +1,6 @@
 ﻿[submodule "backend"]
     path = backend
     url = https://github.com/arocebd/pos-backend.git
+[submodule "frontend"]
+    path = frontend
+    url = https://github.com/arocebd/pos-frontend.git
