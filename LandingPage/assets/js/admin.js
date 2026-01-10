@@ -4,8 +4,8 @@
  */
 
 // Configuration
-const WORKER_URL = 'https://your-worker-name.your-subdomain.workers.dev'; // Update this with your worker URL
-let adminToken = localStorage.getItem('adminToken');
+const WORKER_URL = 'https://khotiyan.com'; // Update this with your worker URL
+let adminToken = localStorage.getItem('Alzabeer-Admin-Token') || null;
 let currentFilter = 'all';
 let allMessages = [];
 

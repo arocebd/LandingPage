@@ -1,0 +1,3 @@
+﻿[submodule "backend"]
+    path = backend
+    url = https://github.com/arocebd/pos-backend.git
