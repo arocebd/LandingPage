@@ -4,8 +4,8 @@
  */
 
 // Configuration
-const WORKER_URL = 'https://your-worker-name.your-subdomain.workers.dev'; // Update this with your worker URL
-let adminToken = localStorage.getItem('adminToken');
+const WORKER_URL = window.location.origin; // Use same origin so `/api/*` requests go to this worker
+let adminToken = localStorage.getItem('Alzabeer-Admin-Token');
 let currentFilter = 'all';
 let allMessages = [];
 
@@ -44,7 +44,7 @@ function handleLogin(e) {
     
     if (token) {
         adminToken = token;
-        localStorage.setItem('adminToken', token);
+        localStorage.setItem('Alzabeer-Admin-Token', token);
         showAdminPanel();
         loadMessages();
     }
