@@ -56,11 +56,42 @@ export default {
         return await handleDeleteMessage(request, env, id);
       }
 
-      // Default response
-      return new Response('POS Khotiyan Contact API - Endpoints: POST /api/contact, GET /api/messages', {
-        status: 200,
-        headers: { ...CORS_HEADERS, 'Content-Type': 'text/plain' }
-      });
+      // Explicit route for admin-messages page
+      if (path === '/admin-messages') {
+        return await env.ASSETS.fetch(new URL('/admin-messages.html', request.url));
+      }
+
+      // Serve static assets for all other routes
+      // This includes index.html, CSS, JS, images, etc.
+      try {
+        const assetResponse = await env.ASSETS.fetch(request);
+        
+        // If asset exists, return it
+        if (assetResponse.status !== 404) {
+          return assetResponse;
+        }
+        
+        // For non-API routes that don't exist, serve index.html (SPA fallback)
+        if (!path.startsWith('/api/')) {
+          return await env.ASSETS.fetch(new URL('/index.html', request.url));
+        }
+        
+        // API route not found
+        return new Response(JSON.stringify({ 
+          success: false, 
+          error: 'API endpoint not found' 
+        }), {
+          status: 404,
+          headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+        });
+        
+      } catch (assetError) {
+        // If ASSETS binding fails, return error
+        return new Response('Asset serving error: ' + assetError.message, {
+          status: 500,
+          headers: { ...CORS_HEADERS, 'Content-Type': 'text/plain' }
+        });
+      }
 
     } catch (error) {
       return new Response(JSON.stringify({ 
