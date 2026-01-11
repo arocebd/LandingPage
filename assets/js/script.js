@@ -468,8 +468,10 @@ function isValidPhone(phone) {
 
 // Submit form data to Cloudflare Worker
 async function submitToBackend(name, email, phone, message, formElement) {
-    // Replace this URL with your actual Cloudflare Worker URL
-    const WORKER_URL = 'https://your-worker-name.your-subdomain.workers.dev/api/contact';
+    // API endpoint for contact form submission
+    const API_URL = window.location.origin + '/api/contact';
+    
+    console.log('Submitting to:', API_URL);
     
     // Show loading state
     const submitBtn = formElement.querySelector('button[type="submit"]');
@@ -478,7 +480,9 @@ async function submitToBackend(name, email, phone, message, formElement) {
     submitBtn.textContent = 'Sending...';
     
     try {
-        const response = await fetch(WORKER_URL, {
+        console.log('Sending data:', { name, email, phone, message });
+        
+        const response = await fetch(API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -491,7 +495,11 @@ async function submitToBackend(name, email, phone, message, formElement) {
             })
         });
         
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers.get('content-type'));
+        
         const data = await response.json();
+        console.log('Response data:', data);
         
         if (data.success) {
             showNotification('Message sent successfully! We will contact you soon.', 'success');
