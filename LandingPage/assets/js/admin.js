@@ -4,7 +4,7 @@
  */
 
 // Configuration
-const WORKER_URL = 'https://khotiyan.com'; // Update this with your worker URL
+const WORKER_URL = window.location.origin; // Use same origin so `/api/*` requests go to this worker
 let adminToken = localStorage.getItem('Alzabeer-Admin-Token') || null;
 let currentFilter = 'all';
 let allMessages = [];
@@ -44,7 +44,7 @@ function handleLogin(e) {
     
     if (token) {
         adminToken = token;
-        localStorage.setItem('adminToken', token);
+        localStorage.setItem('Alzabeer-Admin-Token', token);
         showAdminPanel();
         loadMessages();
     }
