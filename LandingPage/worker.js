@@ -56,6 +56,18 @@ export default {
         return await handleDeleteMessage(request, env, id);
       }
 
+      // Route: Admin messages page (handle both /admin-messages and /admin-message)
+      if (path === '/admin-messages' || path === '/admin-message' || path === '/admin-messages.html') {
+        try {
+          return await env.ASSETS.fetch(new Request('/admin-messages.html', request));
+        } catch (e) {
+          return new Response('Admin page not found', {
+            status: 404,
+            headers: { ...CORS_HEADERS, 'Content-Type': 'text/plain' }
+          });
+        }
+      }
+
       // If the request is not for the API, try to serve static assets
       // `env.ASSETS` is provided by Wrangler when using the [assets] config
       if (!path.startsWith('/api')) {
