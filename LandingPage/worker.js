@@ -56,7 +56,32 @@ export default {
         return await handleDeleteMessage(request, env, id);
       }
 
-      // Default response
+      // If the request is not for the API, try to serve static assets
+      // `env.ASSETS` is provided by Wrangler when using the [assets] config
+      if (!path.startsWith('/api')) {
+        try {
+          const assetResponse = await env.ASSETS.fetch(request);
+          // If asset found, return it
+          if (assetResponse && assetResponse.status !== 404) {
+            return assetResponse;
+          }
+        } catch (e) {
+          // Fall through to SPA fallback below
+        }
+
+        // SPA fallback: serve index.html for client-side routes
+        try {
+          return await env.ASSETS.fetch(new Request('/index.html', request));
+        } catch (e) {
+          // If assets are not available, return a helpful error
+          return new Response('Landing page assets not found', {
+            status: 500,
+            headers: { ...CORS_HEADERS, 'Content-Type': 'text/plain' }
+          });
+        }
+      }
+
+      // Default response for API root or unknown API routes
       return new Response('POS Khotiyan Contact API - Endpoints: POST /api/contact, GET /api/messages', {
         status: 200,
         headers: { ...CORS_HEADERS, 'Content-Type': 'text/plain' }
