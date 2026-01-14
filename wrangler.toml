@@ -3,3 +3,8 @@ compatibility_date = "2026-01-11"
 
 [assets]
 directory = "LandingPage"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "landingpage-messages"
+database_id = "c33fd276-9823-49e3-b95a-dfcc6b06b82e"

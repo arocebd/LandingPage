@@ -5,7 +5,7 @@
 
 // Configuration
 const WORKER_URL = window.location.origin; // Use same origin so `/api/*` requests go to this worker
-let adminToken = localStorage.getItem('Alzabeer-Admin-Token') || null;
+let adminToken = localStorage.getItem('Alzabeer-Admin-Token');
 let currentFilter = 'all';
 let allMessages = [];
 
@@ -78,10 +78,22 @@ async function loadMessages() {
             }
         });
         
+        console.log('API Response Status:', response.status);
+        console.log('API Response Headers:', response.headers.get('content-type'));
+        
         if (response.status === 401) {
             // Unauthorized - token is invalid
             alert('Invalid admin token. Please login again.');
             handleLogout();
+            return;
+        }
+        
+        // Check if response is JSON
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            console.error('API returned non-JSON response:', text);
+            showError('API Error: Server returned ' + contentType + ' instead of JSON. Check console for details.');
             return;
         }
         
@@ -96,7 +108,7 @@ async function loadMessages() {
         }
     } catch (error) {
         console.error('Error loading messages:', error);
-        showError('Failed to load messages. Please check your connection and worker URL.');
+        showError('Failed to load messages: ' + error.message);
     } finally {
         hideLoading();
     }

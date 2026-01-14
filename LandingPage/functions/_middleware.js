@@ -1,32 +1,33 @@
 /**
- * Cloudflare Worker for handling contact form submissions
- * This worker stores messages in Cloudflare D1 (SQLite) database
- * and provides API endpoints for the admin panel
+ * Cloudflare Pages Middleware
+ * This file is automatically used by Pages Functions
  */
 
-// CORS headers for allowing requests from your GitHub Pages domain
+// CORS headers
 const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*', // Replace with your domain: 'https://yourusername.github.io'
+  'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   'Access-Control-Max-Age': '86400',
 };
 
-// Simple authentication token (you should change this to a strong password)
-const ADMIN_TOKEN = 'Al-Zabeer-Admin-Token'; // IMPORTANT: Change this!
+// Admin authentication token
+const ADMIN_TOKEN = 'Al-Zabeer-Admin-Token';
 
-export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
-    const path = url.pathname;
+export async function onRequest(context) {
+  const { request, env, next } = context;
+  const url = new URL(request.url);
+  const path = url.pathname;
 
-    // Handle CORS preflight requests
-    if (request.method === 'OPTIONS') {
-      return new Response(null, {
-        headers: CORS_HEADERS
-      });
-    }
+  // Handle CORS preflight requests
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      headers: CORS_HEADERS
+    });
+  }
 
+  // Handle API routes
+  if (path.startsWith('/api/')) {
     try {
       // Route: Submit contact form
       if (path === '/api/contact' && request.method === 'POST') {
@@ -39,59 +40,31 @@ export default {
       }
 
       // Route: Get single message (admin)
-      if (path.startsWith('/api/messages/') && request.method === 'GET') {
+      if (path.match(/^\/api\/messages\/\d+$/) && request.method === 'GET') {
         const id = path.split('/')[3];
         return await handleGetMessage(request, env, id);
       }
 
       // Route: Update message status (admin)
-      if (path.startsWith('/api/messages/') && request.method === 'PUT') {
+      if (path.match(/^\/api\/messages\/\d+$/) && request.method === 'PUT') {
         const id = path.split('/')[3];
         return await handleUpdateMessage(request, env, id);
       }
 
       // Route: Delete message (admin)
-      if (path.startsWith('/api/messages/') && request.method === 'DELETE') {
+      if (path.match(/^\/api\/messages\/\d+$/) && request.method === 'DELETE') {
         const id = path.split('/')[3];
         return await handleDeleteMessage(request, env, id);
       }
 
-      // Explicit route for admin-messages page
-      if (path === '/admin-messages') {
-        return await env.ASSETS.fetch(new URL('/admin-messages.html', request.url));
-      }
-
-      // Serve static assets for all other routes
-      // This includes index.html, CSS, JS, images, etc.
-      try {
-        const assetResponse = await env.ASSETS.fetch(request);
-        
-        // If asset exists, return it
-        if (assetResponse.status !== 404) {
-          return assetResponse;
-        }
-        
-        // For non-API routes that don't exist, serve index.html (SPA fallback)
-        if (!path.startsWith('/api/')) {
-          return await env.ASSETS.fetch(new URL('/index.html', request.url));
-        }
-        
-        // API route not found
-        return new Response(JSON.stringify({ 
-          success: false, 
-          error: 'API endpoint not found' 
-        }), {
-          status: 404,
-          headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
-        });
-        
-      } catch (assetError) {
-        // If ASSETS binding fails, return error
-        return new Response('Asset serving error: ' + assetError.message, {
-          status: 500,
-          headers: { ...CORS_HEADERS, 'Content-Type': 'text/plain' }
-        });
-      }
+      // API route not found
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: 'API endpoint not found' 
+      }), {
+        status: 404,
+        headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+      });
 
     } catch (error) {
       return new Response(JSON.stringify({ 
@@ -103,7 +76,10 @@ export default {
       });
     }
   }
-};
+
+  // For non-API routes, continue to static assets
+  return await next();
+}
 
 /**
  * Handle contact form submission
@@ -251,7 +227,15 @@ async function handleGetMessage(request, env, id) {
       .bind(id)
       .first();
 
-    if (!result) {
+    if (result) {
+      return new Response(JSON.stringify({
+        success: true,
+        message: result
+      }), {
+        status: 200,
+        headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+      });
+    } else {
       return new Response(JSON.stringify({
         success: false,
         error: 'Message not found'
@@ -260,14 +244,6 @@ async function handleGetMessage(request, env, id) {
         headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
       });
     }
-
-    return new Response(JSON.stringify({
-      success: true,
-      message: result
-    }), {
-      status: 200,
-      headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
-    });
 
   } catch (error) {
     return new Response(JSON.stringify({
@@ -281,7 +257,7 @@ async function handleGetMessage(request, env, id) {
 }
 
 /**
- * Handle updating message status (admin only)
+ * Handle updating message (admin only)
  */
 async function handleUpdateMessage(request, env, id) {
   // Check authentication
@@ -300,10 +276,10 @@ async function handleUpdateMessage(request, env, id) {
     const data = await request.json();
     const { status } = data;
 
-    if (!['unread', 'read', 'archived'].includes(status)) {
+    if (!status || !['read', 'unread'].includes(status)) {
       return new Response(JSON.stringify({
         success: false,
-        error: 'Invalid status. Must be: unread, read, or archived'
+        error: 'Invalid status. Must be "read" or "unread"'
       }), {
         status: 400,
         headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
@@ -317,7 +293,7 @@ async function handleUpdateMessage(request, env, id) {
     if (result.success) {
       return new Response(JSON.stringify({
         success: true,
-        message: 'Message status updated'
+        message: 'Message updated'
       }), {
         status: 200,
         headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }

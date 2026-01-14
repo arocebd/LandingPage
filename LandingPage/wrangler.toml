@@ -1,12 +1,12 @@
-name = "pos-khotiyan-contact-api"
+name = "landingpage"
 main = "worker.js"
-compatibility_date = "2024-01-01"
+compatibility_date = "2026-01-11"
 
 # D1 Database binding
 [[d1_databases]]
 binding = "DB"
-database_name = "pos-khotiyan-message-db"
-database_id = "posmsgdb" # Will be generated when you create the database
+database_name = "landingpage-messages"
+database_id = "c33fd276-9823-49e3-b95a-dfcc6b06b82e"
 
 # Environment variables (optional)
 [vars]
