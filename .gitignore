@@ -16,6 +16,7 @@ yarn.lock
 # Backup files
 *.sql.backup
 backup-*.sql
+*.backup
 
 # OS files
 .DS_Store

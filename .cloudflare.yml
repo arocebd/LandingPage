@@ -1,0 +1,14 @@
+# Cloudflare Pages Build Configuration
+# This file is optional but helps Cloudflare understand your project
+
+# No build needed - static site
+build:
+  command: echo "No build required"
+  publish: .
+  
+# Ignore these files during deployment
+exclude:
+  - "*.backup"
+  - "*.log"
+  - ".git"
+  - "node_modules"
