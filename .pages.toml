@@ -1,0 +1,21 @@
+# Cloudflare Pages Configuration
+# This file tells Cloudflare how to build and deploy your site
+
+# Build configuration
+[build]
+  command = ""
+  publish = "."
+
+# Pages Functions configuration (replaces worker.js)
+[functions]
+  directory = "functions"
+
+# D1 Database bindings
+[[d1_databases]]
+  binding = "DB"
+  database_name = "landingpage-messages"
+  database_id = "c33fd276-9823-49e3-b95a-dfcc6b06b82e"
+
+# Environment variables
+[vars]
+  ENVIRONMENT = "production"
