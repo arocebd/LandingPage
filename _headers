@@ -1,0 +1,61 @@
+# Headers for Cloudflare Pages
+# These headers help with SEO, security, and performance
+
+# Apply to all routes
+/*
+  # Security Headers
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  
+  # Cache Control
+  Cache-Control: public, max-age=3600, must-revalidate
+  
+  # Content Security Policy (adjust as needed)
+  Content-Security-Policy: default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;
+
+# Sitemap
+/sitemap.xml
+  Content-Type: application/xml
+  Cache-Control: public, max-age=86400
+
+# Robots.txt
+/robots.txt
+  Content-Type: text/plain
+  Cache-Control: public, max-age=86400
+
+# Static Assets - Long cache
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML files - Short cache
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# CSS and JS files
+/*.css
+  Cache-Control: public, max-age=604800, must-revalidate
+  
+/*.js
+  Cache-Control: public, max-age=604800, must-revalidate
+
+# Images - Long cache
+/*.png
+  Cache-Control: public, max-age=2592000, immutable
+  
+/*.jpg
+  Cache-Control: public, max-age=2592000, immutable
+  
+/*.jpeg
+  Cache-Control: public, max-age=2592000, immutable
+  
+/*.gif
+  Cache-Control: public, max-age=2592000, immutable
+  
+/*.svg
+  Cache-Control: public, max-age=2592000, immutable
+  
+/*.webp
+  Cache-Control: public, max-age=2592000, immutable

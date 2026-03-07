@@ -1,0 +1,25 @@
+# robots.txt for khotiyan.com
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://khotiyan.com/sitemap.xml
+
+# Disallow admin areas (if any)
+Disallow: /pages/admin-messages.html
+
+# Allow specific pages
+Allow: /index.html
+Allow: /assets/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+
+# Crawl delay (optional, helps with server load)
+Crawl-delay: 1

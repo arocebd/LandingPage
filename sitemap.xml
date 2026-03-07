@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://khotiyan.com/</loc>
+        <lastmod>2026-03-07</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Features Section -->
+    <url>
+        <loc>https://khotiyan.com/#features</loc>
+        <lastmod>2026-03-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Pricing Section -->
+    <url>
+        <loc>https://khotiyan.com/#pricing</loc>
+        <lastmod>2026-03-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Tutorial Section -->
+    <url>
+        <loc>https://khotiyan.com/#tutorial</loc>
+        <lastmod>2026-03-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Contact Section -->
+    <url>
+        <loc>https://khotiyan.com/#contact</loc>
+        <lastmod>2026-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Admin Messages Page -->
+    <url>
+        <loc>https://khotiyan.com/admin-messages.html</loc>
+        <lastmod>2026-03-07</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.5</priority>
+    </url>
+    
+</urlset>
