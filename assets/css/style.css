@@ -1331,3 +1331,71 @@ section {
         display: none !important;
     }
 }
+
+/* ============================================
+   Products Section (company product cards)
+   ============================================ */
+.products-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-badge {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: var(--primary-gradient);
+    color: var(--text-white);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-lg);
+}
+
+.product-badge-blue {
+    background: linear-gradient(135deg, #0ea5e9, #2563eb);
+}
+
+.product-footer {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.product-price {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.product-footer .btn {
+    padding: 0.5rem 1.1rem;
+    font-size: var(--font-size-sm);
+}
+
+@media (max-width: 768px) {
+    .product-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
