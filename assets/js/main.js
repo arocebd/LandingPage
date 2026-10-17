@@ -93,6 +93,51 @@ if (domainSearchForm) {
   });
 }
 
+// Hosting plan request flow (click "Get Started" on a plan -> contact details -> mailto)
+const hostingGrid = document.getElementById('hostingPricingGrid');
+if (hostingGrid) {
+  const requestForm = document.getElementById('hostingRequestForm');
+  const requestTarget = document.getElementById('hostingRequestTarget');
+  const requestSuccess = document.getElementById('hostingRequestSuccess');
+  const cancelBtn = document.getElementById('hostingRequestCancel');
+
+  hostingGrid.querySelectorAll('.hosting-get-started').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      requestTarget.textContent = btn.dataset.plan;
+      hostingGrid.hidden = true;
+      requestForm.hidden = false;
+      requestSuccess.hidden = true;
+    });
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    requestForm.hidden = true;
+    hostingGrid.hidden = false;
+  });
+
+  requestForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const plan = requestTarget.textContent;
+    const name = document.getElementById('hostingRequestName').value.trim();
+    const contact = document.getElementById('hostingRequestContact').value.trim();
+    const note = document.getElementById('hostingRequestNote').value.trim();
+
+    const subject = `Hosting request: ${plan}`;
+    const body = [
+      `Plan: ${plan}`,
+      `Name: ${name}`,
+      `Contact: ${contact}`,
+      note ? `Note: ${note}` : null,
+    ].filter(Boolean).join('\n');
+
+    window.location.href = `mailto:poskhotiyan@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    requestForm.hidden = true;
+    requestSuccess.hidden = false;
+    requestForm.reset();
+  });
+}
+
 // Counter animation
 function animateCounter(el) {
   const target = parseInt(el.dataset.target);

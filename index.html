@@ -92,7 +92,7 @@ src="https://www.facebook.com/tr?id=1502686967508059&ev=PageView&noscript=1"
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=202610171305">
+    <link rel="stylesheet" href="assets/css/style.css?v=202610171311">
 
     <!-- Schema.org Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -534,7 +534,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="section-title">Register, <span class="gradient-text">Host, Done</span></h2>
         <p class="section-sub">cPanel setup, email hosting, and managed WordPress included on every plan.</p>
       </div>
-      <div class="pricing-grid">
+      <div class="pricing-grid" id="hostingPricingGrid">
         <div class="pricing-card animate-card">
           <div class="pricing-name">Sprout</div>
           <div class="pricing-price">৳129<span>/month</span></div>
@@ -544,7 +544,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li>✓ Email hosting</li>
             <li>✓ Lifetime free SSL</li>
           </ul>
-          <a href="#contact" class="btn btn-outline btn-block">Get Started</a>
+          <button type="button" class="btn btn-outline btn-block hosting-get-started" data-plan="Sprout (৳129/month, 5GB)">Get Started</button>
         </div>
         <div class="pricing-card animate-card">
           <div class="pricing-name">Grow</div>
@@ -555,7 +555,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li>✓ Email hosting</li>
             <li>✓ Managed WordPress</li>
           </ul>
-          <a href="#contact" class="btn btn-outline btn-block">Get Started</a>
+          <button type="button" class="btn btn-outline btn-block hosting-get-started" data-plan="Grow (৳219/month, 10GB)">Get Started</button>
         </div>
         <div class="pricing-card pricing-card-featured animate-card">
           <div class="pricing-popular">Most Popular</div>
@@ -567,7 +567,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li>✓ Email hosting</li>
             <li>✓ Managed WordPress</li>
           </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
+          <button type="button" class="btn btn-primary btn-block hosting-get-started" data-plan="Thrive (৳339/month, 20GB)">Get Started</button>
         </div>
         <div class="pricing-card animate-card">
           <div class="pricing-name">Scale</div>
@@ -578,8 +578,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li>✓ Email hosting</li>
             <li>✓ Managed WordPress</li>
           </ul>
-          <a href="#contact" class="btn btn-outline btn-block">Get Started</a>
+          <button type="button" class="btn btn-outline btn-block hosting-get-started" data-plan="Scale (৳649/month, 50GB)">Get Started</button>
         </div>
+      </div>
+
+      <form class="domain-request-form" id="hostingRequestForm" hidden>
+        <p class="domain-request-target">Requesting: <strong id="hostingRequestTarget"></strong></p>
+        <div class="form-row">
+          <input type="text" id="hostingRequestName" placeholder="Your Name" required />
+          <input type="text" id="hostingRequestContact" placeholder="Email or Phone" required />
+        </div>
+        <textarea id="hostingRequestNote" rows="3" placeholder="Domain to host, existing site to migrate, etc. (optional)"></textarea>
+        <div class="domain-request-actions">
+          <button type="submit" class="btn btn-primary btn-block">Send Request</button>
+          <button type="button" class="btn btn-ghost btn-block" id="hostingRequestCancel">Back</button>
+        </div>
+        <p class="domain-search-hint">Prefer WhatsApp? Message us directly at <a href="https://wa.me/8801685253524">+880 1685-253524</a>.</p>
+      </form>
+
+      <div class="domain-request-success" id="hostingRequestSuccess" hidden>
+        <p>✓ Your email app should have opened with the request pre-filled — just hit send. We'll get back to you within 24 hours.</p>
       </div>
     </div>
   </section>
@@ -777,7 +795,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=202610171305"></script>
+  <script src="assets/js/main.js?v=202610171311"></script>
   <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
 </body>
 </html>
