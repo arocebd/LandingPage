@@ -46,6 +46,53 @@ if (navMobileGroup) {
   });
 }
 
+// Domain request flow (two-step: enter domain -> contact details -> mailto)
+const domainSearchForm = document.getElementById('domainSearchForm');
+if (domainSearchForm) {
+  const searchInput = document.getElementById('domainSearchInput');
+  const requestForm = document.getElementById('domainRequestForm');
+  const requestTarget = document.getElementById('domainRequestTarget');
+  const requestSuccess = document.getElementById('domainRequestSuccess');
+  const cancelBtn = document.getElementById('domainRequestCancel');
+
+  domainSearchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const domain = searchInput.value.trim();
+    if (!domain) return;
+    requestTarget.textContent = domain;
+    domainSearchForm.hidden = true;
+    requestForm.hidden = false;
+    requestSuccess.hidden = true;
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    requestForm.hidden = true;
+    domainSearchForm.hidden = false;
+  });
+
+  requestForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const domain = requestTarget.textContent;
+    const name = document.getElementById('domainRequestName').value.trim();
+    const contact = document.getElementById('domainRequestContact').value.trim();
+    const note = document.getElementById('domainRequestNote').value.trim();
+
+    const subject = `Domain request: ${domain}`;
+    const body = [
+      `Domain: ${domain}`,
+      `Name: ${name}`,
+      `Contact: ${contact}`,
+      note ? `Note: ${note}` : null,
+    ].filter(Boolean).join('\n');
+
+    window.location.href = `mailto:poskhotiyan@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    requestForm.hidden = true;
+    requestSuccess.hidden = false;
+    requestForm.reset();
+  });
+}
+
 // Counter animation
 function animateCounter(el) {
   const target = parseInt(el.dataset.target);

@@ -92,7 +92,7 @@ src="https://www.facebook.com/tr?id=1502686967508059&ev=PageView&noscript=1"
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=202610171100">
+    <link rel="stylesheet" href="assets/css/style.css?v=202610171305">
 
     <!-- Schema.org Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -494,11 +494,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="section-sub">Register your domain with Khotiyan and manage DNS right from your dashboard — no third-party registrar needed.</p>
       </div>
       <div class="domain-search">
-        <form class="domain-search-form">
-          <input type="text" placeholder="yourbusiness.com" aria-label="Search for a domain" />
-          <button type="submit" class="btn btn-primary">Search</button>
+        <form class="domain-search-form" id="domainSearchForm">
+          <input type="text" id="domainSearchInput" placeholder="yourbusiness.com" aria-label="Domain name you want" required />
+          <button type="submit" class="btn btn-primary">Check &amp; Request</button>
         </form>
-        <p class="domain-search-hint">Prices shown at checkout. Already have a domain? <a href="#contact">Talk to us</a> about transferring it in.</p>
+        <p class="domain-search-hint">We manually verify availability and pricing with our registrar — no instant auto-checkout. Expect a reply within 24 hours.</p>
+
+        <form class="domain-request-form" id="domainRequestForm" hidden>
+          <p class="domain-request-target">Requesting: <strong id="domainRequestTarget"></strong></p>
+          <div class="form-row">
+            <input type="text" id="domainRequestName" placeholder="Your Name" required />
+            <input type="text" id="domainRequestContact" placeholder="Email or Phone" required />
+          </div>
+          <textarea id="domainRequestNote" rows="3" placeholder="Anything else we should know? (optional)"></textarea>
+          <div class="domain-request-actions">
+            <button type="submit" class="btn btn-primary btn-block">Send Request</button>
+            <button type="button" class="btn btn-ghost btn-block" id="domainRequestCancel">Back</button>
+          </div>
+          <p class="domain-search-hint">Prefer WhatsApp? Message us directly at <a href="https://wa.me/8801685253524">+880 1685-253524</a>.</p>
+        </form>
+
+        <div class="domain-request-success" id="domainRequestSuccess" hidden>
+          <p>✓ Your email app should have opened with the request pre-filled — just hit send. We'll get back to you within 24 hours.</p>
+        </div>
       </div>
       <div class="hosting-cta">
         <h3>Already using Buildcom?</h3>
@@ -759,7 +777,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=202610171100"></script>
+  <script src="assets/js/main.js?v=202610171305"></script>
   <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
 </body>
 </html>

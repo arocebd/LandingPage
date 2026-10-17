@@ -789,3 +789,54 @@ img { display: block; max-width: 100%; }
 @media (max-width: 600px) {
   .domain-search-form { flex-direction: column; }
 }
+
+/* ── Domain request step (shown after "Check & Request") ── */
+.domain-request-form {
+  margin-top: 1.5rem;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.domain-request-target {
+  margin-bottom: 1rem;
+  color: var(--muted);
+}
+.domain-request-target strong { color: var(--text); }
+.domain-request-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.domain-request-form input,
+.domain-request-form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  background: var(--bg2);
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+.domain-request-form textarea { margin-bottom: 1rem; }
+.domain-request-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.domain-request-success {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.3);
+  color: #6ee7b7;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .domain-request-form .form-row { grid-template-columns: 1fr; }
+  .domain-request-actions { flex-direction: column; }
+}
