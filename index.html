@@ -92,7 +92,7 @@ src="https://www.facebook.com/tr?id=1502686967508059&ev=PageView&noscript=1"
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=202610170123">
+    <link rel="stylesheet" href="assets/css/style.css?v=202610171100">
 
     <!-- Schema.org Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -283,34 +283,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
+      <a href="#home" class="nav-logo">
         <img src="./assets/images/logo.png" alt="Khotiyan" class="nav-logo-img" />
         <span class="nav-logo-text">Khotiyan</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#products">Products</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#hosting">Domain &amp; Hosting</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li class="nav-dropdown">
+          <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Our Projects <span class="nav-caret">▾</span></button>
+          <ul class="nav-dropdown-menu">
+            <li><a href="https://possign.khotiyan.com" target="_blank" rel="noopener">Khotiyan POS</a></li>
+            <li><a href="https://buildcom.khotiyan.com" target="_blank" rel="noopener">Buildcom</a></li>
+            <li><a href="https://hatkhoroch.khotiyan.com" target="_blank" rel="noopener">হাত-খরচ</a></li>
+          </ul>
+        </li>
+        <li><a href="#domain">Domain</a></li>
+        <li><a href="#hosting">Hosting</a></li>
+        <li><a href="#about">About Us</a></li>
       </ul>
-      <a href="https://possign.khotiyan.com/registration" class="btn btn-primary nav-cta">Get Started</a>
+      <div class="nav-auth">
+        <a href="https://possign.khotiyan.com/login" class="btn btn-ghost btn-sm">Login</a>
+        <a href="https://possign.khotiyan.com/registration" class="btn btn-primary btn-sm">Sign Up</a>
+      </div>
       <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
     <div class="nav-mobile" id="navMobile">
-      <a href="#products">Products</a>
-      <a href="#services">Services</a>
-      <a href="#hosting">Domain &amp; Hosting</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#contact">Contact</a>
-      <a href="https://possign.khotiyan.com/registration" class="btn btn-primary">Get Started</a>
+      <a href="#home">Home</a>
+      <div class="nav-mobile-group">
+        <button class="nav-mobile-group-toggle" aria-expanded="false">Our Projects <span class="nav-caret">▾</span></button>
+        <div class="nav-mobile-submenu">
+          <a href="https://possign.khotiyan.com" target="_blank" rel="noopener">Khotiyan POS</a>
+          <a href="https://buildcom.khotiyan.com" target="_blank" rel="noopener">Buildcom</a>
+          <a href="https://hatkhoroch.khotiyan.com" target="_blank" rel="noopener">হাত-খরচ</a>
+        </div>
+      </div>
+      <a href="#domain">Domain</a>
+      <a href="#hosting">Hosting</a>
+      <a href="#about">About Us</a>
+      <a href="https://possign.khotiyan.com/login" class="btn btn-ghost">Login</a>
+      <a href="https://possign.khotiyan.com/registration" class="btn btn-primary">Sign Up</a>
     </div>
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="hero-bg">
       <div class="hero-orb hero-orb-1"></div>
       <div class="hero-orb hero-orb-2"></div>
@@ -467,10 +485,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- DOMAIN & HOSTING -->
-  <section class="section" id="hosting">
+  <!-- DOMAIN -->
+  <section class="section" id="domain">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Domain &amp; Hosting</span>
+        <span class="section-tag">Domain</span>
+        <h2 class="section-title">Find Your <span class="gradient-text">Perfect Domain</span></h2>
+        <p class="section-sub">Register your domain with Khotiyan and manage DNS right from your dashboard — no third-party registrar needed.</p>
+      </div>
+      <div class="domain-search">
+        <form class="domain-search-form">
+          <input type="text" placeholder="yourbusiness.com" aria-label="Search for a domain" />
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <p class="domain-search-hint">Prices shown at checkout. Already have a domain? <a href="#contact">Talk to us</a> about transferring it in.</p>
+      </div>
+      <div class="hosting-cta">
+        <h3>Already using Buildcom?</h3>
+        <p>Buy your domain and manage your hosting directly from your Buildcom store dashboard — no separate login needed.</p>
+        <a href="https://buildcom.khotiyan.com" target="_blank" rel="noopener" class="btn btn-primary">Open Buildcom Dashboard</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOSTING -->
+  <section class="section section-alt" id="hosting">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Hosting</span>
         <h2 class="section-title">Register, <span class="gradient-text">Host, Done</span></h2>
         <p class="section-sub">cPanel setup, email hosting, and managed WordPress included on every plan.</p>
       </div>
@@ -521,16 +563,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#contact" class="btn btn-outline btn-block">Get Started</a>
         </div>
       </div>
-      <div class="hosting-cta">
-        <h3>Already using Buildcom?</h3>
-        <p>Buy your domain and manage your hosting directly from your Buildcom store dashboard — no separate login needed.</p>
-        <a href="https://buildcom.khotiyan.com" target="_blank" rel="noopener" class="btn btn-primary">Open Buildcom Dashboard</a>
-      </div>
     </div>
   </section>
 
   <!-- PRICING -->
-  <section class="section section-alt" id="pricing">
+  <section class="section" id="pricing">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Pricing</span>
@@ -612,12 +649,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- WHY US -->
-  <section class="section">
+  <!-- ABOUT US -->
+  <section class="section section-alt" id="about">
     <div class="container">
       <div class="why-grid">
         <div class="why-text">
-          <span class="section-tag">Why Khotiyan</span>
+          <span class="section-tag">About Us</span>
           <h2 class="section-title">Built Local, <span class="gradient-text">Thinking Global</span></h2>
           <p>We understand Bangladesh's unique market. Our products are designed specifically for how Bangladeshi businesses and individuals actually work — with Bangla support, bKash integration, and local pricing.</p>
           <div class="why-points">
@@ -648,7 +685,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- CONTACT -->
-  <section class="section section-alt" id="contact">
+  <section class="section" id="contact">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Contact Us</span>
@@ -705,15 +742,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <strong>Services</strong>
           <a href="#services">Web Development</a>
           <a href="#services">App Development</a>
-          <a href="#hosting">Domain & Hosting</a>
-          <a href="#services">Branding</a>
+          <a href="#domain">Domain</a>
+          <a href="#hosting">Hosting</a>
         </div>
         <div class="footer-links">
           <strong>Company</strong>
+          <a href="#about">About Us</a>
           <a href="#contact">Contact</a>
-          <a href="https://possign.khotiyan.com/login" target="_blank" rel="noopener">POS Login</a>
-          <a href="https://possign.khotiyan.com/registration" target="_blank" rel="noopener">POS Register</a>
-          <a href="mailto:poskhotiyan@gmail.com">poskhotiyan@gmail.com</a>
+          <a href="https://possign.khotiyan.com/login" target="_blank" rel="noopener">Login</a>
+          <a href="https://possign.khotiyan.com/registration" target="_blank" rel="noopener">Sign Up</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -722,7 +759,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=202610170123"></script>
+  <script src="assets/js/main.js?v=202610171100"></script>
   <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
 </body>
 </html>

@@ -19,6 +19,33 @@ navMobile.querySelectorAll('a').forEach(a => {
   });
 });
 
+// Desktop "Our Projects" dropdown
+const navDropdown = document.querySelector('.nav-dropdown');
+if (navDropdown) {
+  const toggle = navDropdown.querySelector('.nav-dropdown-toggle');
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = navDropdown.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', (e) => {
+    if (!navDropdown.contains(e.target)) {
+      navDropdown.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+// Mobile "Our Projects" accordion
+const navMobileGroup = document.querySelector('.nav-mobile-group');
+if (navMobileGroup) {
+  const groupToggle = navMobileGroup.querySelector('.nav-mobile-group-toggle');
+  groupToggle.addEventListener('click', () => {
+    const open = navMobileGroup.classList.toggle('open');
+    groupToggle.setAttribute('aria-expanded', open);
+  });
+}
+
 // Counter animation
 function animateCounter(el) {
   const target = parseInt(el.dataset.target);
