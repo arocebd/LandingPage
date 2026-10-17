@@ -92,7 +92,7 @@ src="https://www.facebook.com/tr?id=1502686967508059&ev=PageView&noscript=1"
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=202610171311">
+    <link rel="stylesheet" href="assets/css/style.css?v=202610171333">
 
     <!-- Schema.org Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -496,9 +496,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="domain-search">
         <form class="domain-search-form" id="domainSearchForm">
           <input type="text" id="domainSearchInput" placeholder="yourbusiness.com" aria-label="Domain name you want" required />
-          <button type="submit" class="btn btn-primary">Check &amp; Request</button>
+          <button type="submit" class="btn btn-primary" id="domainSearchBtn">Check Availability</button>
         </form>
-        <p class="domain-search-hint">We manually verify availability and pricing with our registrar — no instant auto-checkout. Expect a reply within 24 hours.</p>
+        <p class="domain-search-hint">Live availability check against the registry. Pricing is confirmed manually and setup takes 24 hours or more.</p>
+
+        <div class="domain-result" id="domainResult" hidden></div>
 
         <form class="domain-request-form" id="domainRequestForm" hidden>
           <p class="domain-request-target">Requesting: <strong id="domainRequestTarget"></strong></p>
@@ -795,7 +797,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=202610171311"></script>
+  <script src="assets/js/main.js?v=202610171333"></script>
   <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
 </body>
 </html>

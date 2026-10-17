@@ -790,6 +790,40 @@ img { display: block; max-width: 100%; }
   .domain-search-form { flex-direction: column; }
 }
 
+/* ── Domain live availability result ── */
+.domain-result {
+  margin-top: 1.25rem;
+  padding: 1.1rem 1.4rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  text-align: left;
+}
+.domain-result-checking {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  color: var(--muted);
+}
+.domain-result-available {
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.35);
+  color: #6ee7b7;
+}
+.domain-result-taken {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.35);
+  color: #fca5a5;
+}
+.domain-result-unknown {
+  background: rgba(249,115,22,0.1);
+  border: 1px solid rgba(249,115,22,0.35);
+  color: #fdba74;
+}
+.domain-result strong { font-weight: 700; }
+
 /* ── Domain request step (shown after "Check & Request") ── */
 .domain-request-form {
   margin-top: 1.5rem;

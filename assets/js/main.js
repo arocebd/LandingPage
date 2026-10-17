@@ -46,28 +46,76 @@ if (navMobileGroup) {
   });
 }
 
-// Domain request flow (two-step: enter domain -> contact details -> mailto)
+// Domain availability + request flow:
+// 1. Live RDAP check (real registry data, via rdap.org's CORS-enabled
+//    bootstrap redirector -- no backend needed, no fake results)
+// 2. If available (or unverifiable), reveal the contact-details request form
 const domainSearchForm = document.getElementById('domainSearchForm');
 if (domainSearchForm) {
   const searchInput = document.getElementById('domainSearchInput');
+  const searchBtn = document.getElementById('domainSearchBtn');
+  const resultBox = document.getElementById('domainResult');
   const requestForm = document.getElementById('domainRequestForm');
   const requestTarget = document.getElementById('domainRequestTarget');
   const requestSuccess = document.getElementById('domainRequestSuccess');
   const cancelBtn = document.getElementById('domainRequestCancel');
 
-  domainSearchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const domain = searchInput.value.trim();
-    if (!domain) return;
+  function showResult(state, html) {
+    resultBox.hidden = false;
+    resultBox.className = `domain-result domain-result-${state}`;
+    resultBox.innerHTML = html;
+  }
+
+  function openRequestForm(domain) {
     requestTarget.textContent = domain;
-    domainSearchForm.hidden = true;
     requestForm.hidden = false;
     requestSuccess.hidden = true;
+  }
+
+  async function checkDomain(domain) {
+    showResult('checking', `<span>Checking <strong>${domain}</strong> against the registry…</span>`);
+    requestForm.hidden = true;
+
+    try {
+      const res = await fetch(`https://rdap.org/domain/${encodeURIComponent(domain)}`, { redirect: 'follow' });
+      const finalHost = new URL(res.url).hostname;
+      const wasRedirected = finalHost !== 'rdap.org';
+
+      if (!wasRedirected) {
+        // rdap.org itself answered -- no registry RDAP server known for this TLD
+        showResult('unknown', `<span>Can't auto-verify this TLD yet for <strong>${domain}</strong> — request it below and we'll check manually.</span>`);
+        openRequestForm(domain);
+        return;
+      }
+
+      if (res.status === 404) {
+        showResult('available', `<span>✓ <strong>${domain}</strong> looks available!</span>`);
+        openRequestForm(domain);
+      } else if (res.status === 200) {
+        showResult('taken', `<span>✗ <strong>${domain}</strong> is already registered.</span>`);
+      } else {
+        showResult('unknown', `<span>Couldn't confirm <strong>${domain}</strong> automatically — request it below and we'll check manually.</span>`);
+        openRequestForm(domain);
+      }
+    } catch (err) {
+      showResult('unknown', `<span>Couldn't reach the registry to check <strong>${domain}</strong> — request it below and we'll check manually.</span>`);
+      openRequestForm(domain);
+    }
+  }
+
+  domainSearchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const domain = searchInput.value.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '');
+    if (!domain || !domain.includes('.')) {
+      showResult('unknown', '<span>Enter a domain like <strong>yourbusiness.com</strong>.</span>');
+      return;
+    }
+    checkDomain(domain);
   });
 
   cancelBtn.addEventListener('click', () => {
     requestForm.hidden = true;
-    domainSearchForm.hidden = false;
+    resultBox.hidden = true;
   });
 
   requestForm.addEventListener('submit', (e) => {
