@@ -50,11 +50,35 @@ if (navMobileGroup) {
 // 1. Live RDAP check (real registry data, via rdap.org's CORS-enabled
 //    bootstrap redirector -- no backend needed, no fake results)
 // 2. If available (or unverifiable), reveal the contact-details request form
+// Other TLDs offered as suggestions for whatever base name was searched.
+// Prices are placeholders until real Cloudflare Registrar cost data is
+// available (needs an API token with Registrar permission) -- shown
+// honestly as "price TBC" rather than a made-up number.
+const DOMAIN_SUGGESTION_TLDS = ['com', 'net', 'org', 'io', 'co', 'xyz'];
+
+// Real-time RDAP lookup, shared by both the main search and the
+// suggestions grid. Returns { status: 'available'|'taken'|'unknown' }.
+async function rdapCheck(domain) {
+  try {
+    const res = await fetch(`https://rdap.org/domain/${encodeURIComponent(domain)}`, { redirect: 'follow' });
+    const finalHost = new URL(res.url).hostname;
+    const wasRedirected = finalHost !== 'rdap.org';
+
+    if (!wasRedirected) return { status: 'unknown' }; // no RDAP server known for this TLD
+    if (res.status === 404) return { status: 'available' };
+    if (res.status === 200) return { status: 'taken' };
+    return { status: 'unknown' };
+  } catch (err) {
+    return { status: 'unknown' };
+  }
+}
+
 const domainSearchForm = document.getElementById('domainSearchForm');
 if (domainSearchForm) {
   const searchInput = document.getElementById('domainSearchInput');
-  const searchBtn = document.getElementById('domainSearchBtn');
   const resultBox = document.getElementById('domainResult');
+  const suggestionsBox = document.getElementById('domainSuggestions');
+  const suggestionsGrid = document.getElementById('domainSuggestionsGrid');
   const requestForm = document.getElementById('domainRequestForm');
   const requestTarget = document.getElementById('domainRequestTarget');
   const requestSuccess = document.getElementById('domainRequestSuccess');
@@ -70,37 +94,74 @@ if (domainSearchForm) {
     requestTarget.textContent = domain;
     requestForm.hidden = false;
     requestSuccess.hidden = true;
+    requestForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   async function checkDomain(domain) {
     showResult('checking', `<span>Checking <strong>${domain}</strong> against the registry…</span>`);
     requestForm.hidden = true;
+    suggestionsBox.hidden = true;
 
-    try {
-      const res = await fetch(`https://rdap.org/domain/${encodeURIComponent(domain)}`, { redirect: 'follow' });
-      const finalHost = new URL(res.url).hostname;
-      const wasRedirected = finalHost !== 'rdap.org';
-
-      if (!wasRedirected) {
-        // rdap.org itself answered -- no registry RDAP server known for this TLD
-        showResult('unknown', `<span>Can't auto-verify this TLD yet for <strong>${domain}</strong> — request it below and we'll check manually.</span>`);
-        openRequestForm(domain);
-        return;
-      }
-
-      if (res.status === 404) {
-        showResult('available', `<span>✓ <strong>${domain}</strong> looks available!</span>`);
-        openRequestForm(domain);
-      } else if (res.status === 200) {
-        showResult('taken', `<span>✗ <strong>${domain}</strong> is already registered.</span>`);
-      } else {
-        showResult('unknown', `<span>Couldn't confirm <strong>${domain}</strong> automatically — request it below and we'll check manually.</span>`);
-        openRequestForm(domain);
-      }
-    } catch (err) {
-      showResult('unknown', `<span>Couldn't reach the registry to check <strong>${domain}</strong> — request it below and we'll check manually.</span>`);
+    const { status } = await rdapCheck(domain);
+    if (status === 'available') {
+      showResult('available', `<span>✓ <strong>${domain}</strong> looks available!</span>`);
+      openRequestForm(domain);
+    } else if (status === 'taken') {
+      showResult('taken', `<span>✗ <strong>${domain}</strong> is already registered.</span>`);
+    } else {
+      showResult('unknown', `<span>Couldn't confirm <strong>${domain}</strong> automatically — request it below and we'll check manually.</span>`);
       openRequestForm(domain);
     }
+
+    showSuggestions(domain);
+  }
+
+  async function showSuggestions(searchedDomain) {
+    const parts = searchedDomain.split('.');
+    const baseName = parts[0];
+    const searchedTld = parts.slice(1).join('.');
+    const tldsToCheck = DOMAIN_SUGGESTION_TLDS.filter(t => t !== searchedTld);
+    if (!baseName || tldsToCheck.length === 0) return;
+
+    suggestionsBox.hidden = false;
+    suggestionsGrid.innerHTML = tldsToCheck.map(tld => {
+      const domain = `${baseName}.${tld}`;
+      return `
+        <div class="domain-suggestion-card" data-domain="${domain}">
+          <div class="domain-suggestion-info">
+            <div class="domain-suggestion-name">${domain}</div>
+            <div class="domain-suggestion-status is-checking">Checking…</div>
+          </div>
+        </div>`;
+    }).join('');
+
+    tldsToCheck.forEach(async (tld) => {
+      const domain = `${baseName}.${tld}`;
+      const { status } = await rdapCheck(domain);
+      const card = suggestionsGrid.querySelector(`[data-domain="${domain}"]`);
+      if (!card) return;
+
+      const statusEl = card.querySelector('.domain-suggestion-status');
+      if (status === 'available') {
+        statusEl.textContent = 'Available · price TBC';
+        statusEl.className = 'domain-suggestion-status is-available';
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn btn-sm btn-outline';
+        btn.textContent = 'Request';
+        btn.addEventListener('click', () => {
+          resultBox.hidden = true;
+          openRequestForm(domain);
+        });
+        card.appendChild(btn);
+      } else if (status === 'taken') {
+        statusEl.textContent = 'Already registered';
+        statusEl.className = 'domain-suggestion-status is-taken';
+      } else {
+        statusEl.textContent = "Can't auto-verify";
+        statusEl.className = 'domain-suggestion-status is-unknown';
+      }
+    });
   }
 
   domainSearchForm.addEventListener('submit', (e) => {
@@ -108,6 +169,7 @@ if (domainSearchForm) {
     const domain = searchInput.value.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '');
     if (!domain || !domain.includes('.')) {
       showResult('unknown', '<span>Enter a domain like <strong>yourbusiness.com</strong>.</span>');
+      suggestionsBox.hidden = true;
       return;
     }
     checkDomain(domain);
@@ -116,6 +178,7 @@ if (domainSearchForm) {
   cancelBtn.addEventListener('click', () => {
     requestForm.hidden = true;
     resultBox.hidden = true;
+    suggestionsBox.hidden = true;
   });
 
   requestForm.addEventListener('submit', (e) => {

@@ -824,6 +824,51 @@ img { display: block; max-width: 100%; }
 }
 .domain-result strong { font-weight: 700; }
 
+/* ── Domain TLD suggestions ── */
+.domain-suggestions {
+  margin-top: 1.5rem;
+  text-align: left;
+}
+.domain-suggestions-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+.domain-suggestions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+.domain-suggestion-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+}
+.domain-suggestion-info { min-width: 0; }
+.domain-suggestion-name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.domain-suggestion-status { font-size: 0.78rem; margin-top: 0.15rem; }
+.domain-suggestion-status.is-available { color: #6ee7b7; }
+.domain-suggestion-status.is-taken { color: #fca5a5; }
+.domain-suggestion-status.is-unknown { color: var(--muted); }
+.domain-suggestion-status.is-checking { color: var(--muted); }
+.domain-suggestion-card .btn { flex-shrink: 0; }
+@media (max-width: 600px) {
+  .domain-suggestions-grid { grid-template-columns: 1fr; }
+}
+
 /* ── Domain request step (shown after "Check & Request") ── */
 .domain-request-form {
   margin-top: 1.5rem;
