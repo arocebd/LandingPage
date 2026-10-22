@@ -11,8 +11,15 @@ const CORS_HEADERS = {
   'Access-Control-Max-Age': '86400',
 };
 
-// Admin authentication token
-const ADMIN_TOKEN = 'Al-Zabeer-Admin-Token';
+// Admin authentication token comes from the Cloudflare Pages secret
+// ADMIN_TOKEN (Pages dashboard -> Settings -> Environment variables,
+// marked "Encrypt"). Never hardcode it here -- this repo is public on
+// GitHub. If it's unset, admin routes fail closed (401) rather than
+// falling back to a guessable default.
+function checkAdminAuth(request, env) {
+  const authHeader = request.headers.get('Authorization');
+  return !!env.ADMIN_TOKEN && authHeader === `Bearer ${env.ADMIN_TOKEN}`;
+}
 
 export async function onRequest(context) {
   const { request, env, next } = context;
@@ -112,6 +119,23 @@ async function handleContactSubmission(request, env) {
       });
     }
 
+    // Basic abuse guard: no schema change needed, just caps how many
+    // submissions one email can land in a 10-minute window so the form
+    // can't be scripted into flooding the D1 table / admin inbox.
+    const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000).toISOString();
+    const recent = await env.DB.prepare(
+      'SELECT COUNT(*) as cnt FROM messages WHERE email = ? AND created_at > ?'
+    ).bind(email, tenMinutesAgo).first();
+    if (recent && recent.cnt >= 3) {
+      return new Response(JSON.stringify({
+        success: false,
+        error: 'Too many submissions. Please try again later.'
+      }), {
+        status: 429,
+        headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' }
+      });
+    }
+
     // Insert into database
     const result = await env.DB.prepare(
       'INSERT INTO messages (name, email, phone, message, status, created_at) VALUES (?, ?, ?, ?, ?, ?)'
@@ -154,9 +178,7 @@ async function handleContactSubmission(request, env) {
  * Handle getting all messages (admin only)
  */
 async function handleGetMessages(request, env) {
-  // Check authentication
-  const authHeader = request.headers.get('Authorization');
-  if (!authHeader || authHeader !== `Bearer ${ADMIN_TOKEN}`) {
+  if (!checkAdminAuth(request, env)) {
     return new Response(JSON.stringify({
       success: false,
       error: 'Unauthorized'
@@ -210,9 +232,7 @@ async function handleGetMessages(request, env) {
  * Handle getting single message (admin only)
  */
 async function handleGetMessage(request, env, id) {
-  // Check authentication
-  const authHeader = request.headers.get('Authorization');
-  if (!authHeader || authHeader !== `Bearer ${ADMIN_TOKEN}`) {
+  if (!checkAdminAuth(request, env)) {
     return new Response(JSON.stringify({
       success: false,
       error: 'Unauthorized'
@@ -260,9 +280,7 @@ async function handleGetMessage(request, env, id) {
  * Handle updating message (admin only)
  */
 async function handleUpdateMessage(request, env, id) {
-  // Check authentication
-  const authHeader = request.headers.get('Authorization');
-  if (!authHeader || authHeader !== `Bearer ${ADMIN_TOKEN}`) {
+  if (!checkAdminAuth(request, env)) {
     return new Response(JSON.stringify({
       success: false,
       error: 'Unauthorized'
@@ -317,9 +335,7 @@ async function handleUpdateMessage(request, env, id) {
  * Handle deleting message (admin only)
  */
 async function handleDeleteMessage(request, env, id) {
-  // Check authentication
-  const authHeader = request.headers.get('Authorization');
-  if (!authHeader || authHeader !== `Bearer ${ADMIN_TOKEN}`) {
+  if (!checkAdminAuth(request, env)) {
     return new Response(JSON.stringify({
       success: false,
       error: 'Unauthorized'
